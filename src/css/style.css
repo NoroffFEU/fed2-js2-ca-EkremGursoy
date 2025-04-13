@@ -1,1 +1,3 @@
 @import url(_reset.css);
+@import "tailwindcss";
+@import "./layout.css";
