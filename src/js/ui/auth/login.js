@@ -7,16 +7,13 @@ export async function onLogin(event) {
   const { data, errors, statusCode } = await login(Object.fromEntries(formData.entries()));
 
   if (data) {
-    // Store the access token in localStorage
-    localStorage.setItem('token', data.accessToken);
-
-    // Optionally store other user data
     localStorage.setItem('user', JSON.stringify({
       name: data.name,
       email: data.email,
       avatar: data.avatar,
       banner: data.banner,
-      venueManager: data.venueManager
+      venueManager: data.venueManager,
+      accessToken: data.accessToken
     }));
 
     window.location.href = '/';
