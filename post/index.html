@@ -1,13 +1,121 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Noroff FED2 JS2 CA</title>
-    <script type="module" src="/src/app.js"></script>
-  </head>
-  <body>
-    <h1>Post Page</h1>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Noroff FED2 JS2 CA</title>
+  <script type="module" src="/src/app.js"></script>
+  <style>
+    a,
+    button,
+    [role="button"] {
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body class="min-h-screen bg-gray-50">
+  <header class="bg-white shadow">
+    <div class="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+      <div class="flex items-center">
+        <a href="/">
+          <img src="/images/noroff-logo.png" alt="Noroff Logo" class="h-10 w-auto" />
+        </a>
+        <h1 class="ml-4 text-2xl font-bold text-gray-900">Post Details</h1>
+      </div>
+      <nav class="flex space-x-4">
+        <a href="/" class="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">Home</a>
+        <a href="/profile/" class="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">My
+          Profile</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="max-w-4xl mx-auto py-6 sm:px-6 lg:px-8">
+    <div class="px-4 py-6 sm:px-0">
+      <!-- Post content will be dynamically inserted here -->
+      <div id="post-container" class="bg-white shadow overflow-hidden rounded-lg">
+        <!-- Loading placeholder -->
+        <div id="post-loading" class="p-10 text-center text-gray-500">
+          Loading post...
+        </div>
+
+        <!-- Error message (hidden by default) -->
+        <div id="post-error" class="hidden p-10 text-center text-red-500">
+          Error loading post. Please try again later.
+        </div>
+
+        <!-- Post header -->
+        <div id="post-header" class="hidden px-4 py-5 sm:px-6 border-b border-gray-200">
+          <div class="flex items-center justify-between">
+            <h1 id="post-title" class="text-2xl font-bold text-gray-900">Post Title</h1>
+            <div id="post-actions" class="hidden flex space-x-2">
+              <a id="edit-post-btn" href="#"
+                class="text-sm px-3 py-1 bg-gray-100 hover:bg-gray-200 text-gray-600 rounded">
+                Edit
+              </a>
+              <button id="delete-post-btn"
+                class="delete-post-btn text-sm px-3 py-1 bg-red-100 hover:bg-red-200 text-red-600 rounded">
+                Delete
+              </button>
+            </div>
+          </div>
+          <div class="mt-1 flex items-center text-sm text-gray-500">
+            <span>Posted by <a id="post-author" href="#"
+                class="text-indigo-600 hover:text-indigo-500">Username</a></span>
+            <span class="mx-1">•</span>
+            <span id="post-date">April 12, 2025</span>
+            <span id="post-tags" class="ml-4 flex flex-wrap gap-2"></span>
+          </div>
+        </div>
+
+        <!-- Post media -->
+        <div id="post-media" class="hidden">
+          <div class="relative aspect-video">
+            <img id="post-image" src="" alt="" class="w-full h-full object-cover" />
+          </div>
+        </div>
+
+        <!-- Post content -->
+        <div id="post-content" class="hidden px-4 py-5 sm:p-6">
+          <div id="post-body" class="prose max-w-none">
+            <!-- Post content will be inserted here -->
+          </div>
+        </div>
+
+        <!-- Post stats -->
+        <div id="post-stats" class="hidden px-4 py-4 sm:px-6 bg-gray-50 border-t border-gray-200">
+          <div class="flex space-x-4 text-sm text-gray-500">
+            <div>
+              <span id="post-comment-count">0</span> comments
+            </div>
+            <div>
+              <span id="post-reaction-count">0</span> reactions
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Return to home button -->
+      <div class="mt-6 flex">
+        <a href="/" class="text-indigo-600 hover:text-indigo-500 flex items-center">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd"
+              d="M9.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L7.414 9H15a1 1 0 110 2H7.414l2.293 2.293a1 1 0 010 1.414z"
+              clip-rule="evenodd" />
+          </svg>
+          Back to posts
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="bg-white">
+    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 flex justify-center">
+      <p class="text-sm text-gray-500">© 2025 Noroff FED2 JS2 Course Assignment</p>
+    </div>
+  </footer>
+</body>
+
 </html>

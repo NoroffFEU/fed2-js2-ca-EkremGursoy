@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Edit Profile - Noroff FED2 JS2 CA</title>
+  <script type="module" src="/src/app.js"></script>
+  <style>
+    a,
+    button,
+    [role="button"] {
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body class="bg-gray-100 min-h-screen">
+  <header class="bg-white shadow">
+    <div class="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+      <div class="flex items-center">
+        <a href="/">
+          <img src="/images/noroff-logo.png" alt="Noroff Logo" class="h-10 w-auto" />
+        </a>
+        <h1 class="ml-4 text-2xl font-bold text-gray-900">Edit Profile</h1>
+      </div>
+      <nav class="flex space-x-4">
+        <a href="/" class="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">Home</a>
+        <a href="/profile/" class="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">My
+          Profile</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container mx-auto px-4 py-8 max-w-4xl">
+    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+      <div class="px-4 py-5 sm:px-6 border-b border-gray-200">
+        <h2 class="text-lg font-medium text-gray-900">Profile Settings</h2>
+        <p class="mt-1 text-sm text-gray-500">Update your personal information</p>
+      </div>
+
+      <div class="px-4 py-5 sm:p-6">
+        <form id="edit-profile-form" class="space-y-6">
+          <!-- Bio -->
+          <div>
+            <label for="edit-bio" class="block text-sm font-medium text-gray-700">Bio</label>
+            <textarea id="edit-bio" name="bio" rows="4"
+              class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+              placeholder="Tell us a bit about yourself"></textarea>
+          </div>
+
+          <!-- Avatar section -->
+          <div class="space-y-3">
+            <label class="block text-sm font-medium text-gray-700">Avatar</label>
+            <div>
+              <label for="edit-avatar-url" class="block text-xs text-gray-500 mb-1">URL</label>
+              <input type="url" id="edit-avatar-url" name="avatar.url"
+                class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                placeholder="https://example.com/avatar.jpg" />
+            </div>
+            <div>
+              <label for="edit-avatar-alt" class="block text-xs text-gray-500 mb-1">Alternative Text</label>
+              <input type="text" id="edit-avatar-alt" name="avatar.alt"
+                class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                placeholder="Description of your avatar image" />
+            </div>
+          </div>
+
+          <!-- Banner section -->
+          <div class="space-y-3">
+            <label class="block text-sm font-medium text-gray-700">Banner</label>
+            <div>
+              <label for="edit-banner-url" class="block text-xs text-gray-500 mb-1">URL</label>
+              <input type="url" id="edit-banner-url" name="banner.url"
+                class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                placeholder="https://example.com/banner.jpg" />
+            </div>
+            <div>
+              <label for="edit-banner-alt" class="block text-xs text-gray-500 mb-1">Alternative Text</label>
+              <input type="text" id="edit-banner-alt" name="banner.alt"
+                class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                placeholder="Description of your banner image" />
+            </div>
+          </div>
+
+          <!-- Preview Section -->
+          <div class="mt-6 bg-gray-50 p-4 rounded-md">
+            <h3 class="text-sm font-medium text-gray-900 mb-3">Preview</h3>
+
+            <!-- Banner preview -->
+            <div class="relative h-32 w-full rounded-md overflow-hidden bg-gray-200 mb-4">
+              <img id="banner-preview" src="" alt="Banner preview" class="w-full h-full object-cover">
+            </div>
+
+            <!-- Avatar preview -->
+            <div class="flex items-center space-x-4">
+              <div class="h-16 w-16 rounded-full overflow-hidden bg-gray-200">
+                <img id="avatar-preview" src="" alt="Avatar preview" class="w-full h-full object-cover">
+              </div>
+              <div>
+                <p id="preview-name" class="text-sm font-medium text-gray-900">Your Name</p>
+                <p id="preview-bio" class="text-xs text-gray-500 mt-1 line-clamp-2">Your bio will appear here...</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Buttons -->
+          <div class="flex justify-end space-x-3 pt-5">
+            <a href="/profile/"
+              class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+              Cancel
+            </a>
+            <button type="submit"
+              class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+              Save Changes
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <footer class="bg-white mt-12">
+    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 flex justify-center">
+      <p class="text-sm text-gray-500">© 2025 Noroff FED2 JS2 Course Assignment</p>
+    </div>
+  </footer>
+
+  <script>
+    // Preview functionality
+    document.addEventListener('DOMContentLoaded', function () {
+      // Get form elements
+      const bioInput = document.getElementById('edit-bio');
+      const avatarUrlInput = document.getElementById('edit-avatar-url');
+      const bannerUrlInput = document.getElementById('edit-banner-url');
+
+      // Get preview elements
+      const avatarPreview = document.getElementById('avatar-preview');
+      const bannerPreview = document.getElementById('banner-preview');
+      const previewBio = document.getElementById('preview-bio');
+
+      // Get current user data from localStorage
+      let currentUser;
+      try {
+        currentUser = JSON.parse(localStorage.getItem('user'));
+      } catch (error) {
+        console.warn('Error parsing user data', error);
+      }
+
+      // Set preview name from current user
+      if (currentUser && currentUser.name) {
+        document.getElementById('preview-name').textContent = currentUser.name;
+      }
+
+      // Initialize previews with existing data as soon as they're available
+      const initInterval = setInterval(() => {
+        // Check if form fields have been populated
+        if (avatarUrlInput.value || bannerUrlInput.value || bioInput.value) {
+          clearInterval(initInterval);
+
+          // Initialize avatar preview
+          if (avatarUrlInput.value) {
+            avatarPreview.src = avatarUrlInput.value;
+            avatarPreview.onerror = function () {
+              this.src = 'https://via.placeholder.com/150?text=Invalid+URL';
+            };
+          }
+
+          // Initialize banner preview
+          if (bannerUrlInput.value) {
+            bannerPreview.src = bannerUrlInput.value;
+            bannerPreview.onerror = function () {
+              this.src = 'https://via.placeholder.com/800x200?text=Invalid+URL';
+            };
+          }
+
+          // Initialize bio preview
+          if (bioInput.value) {
+            previewBio.textContent = bioInput.value.trim() || 'Your bio will appear here...';
+          }
+        }
+      }, 100);
+
+      // Update avatar preview when input changes
+      if (avatarUrlInput && avatarPreview) {
+        avatarUrlInput.addEventListener('input', function () {
+          const url = this.value.trim();
+          if (url) {
+            avatarPreview.src = url;
+            avatarPreview.onerror = function () {
+              this.src = 'https://via.placeholder.com/150?text=Invalid+URL';
+            };
+          } else {
+            avatarPreview.src = '';
+          }
+        });
+      }
+
+      // Update banner preview when input changes
+      if (bannerUrlInput && bannerPreview) {
+        bannerUrlInput.addEventListener('input', function () {
+          const url = this.value.trim();
+          if (url) {
+            bannerPreview.src = url;
+            bannerPreview.onerror = function () {
+              this.src = 'https://via.placeholder.com/800x200?text=Invalid+URL';
+            };
+          } else {
+            bannerPreview.src = '';
+          }
+        });
+      }
+
+      // Update bio preview when input changes
+      if (bioInput && previewBio) {
+        bioInput.addEventListener('input', function () {
+          const text = this.value.trim();
+          previewBio.textContent = text || 'Your bio will appear here...';
+        });
+      }
+    });
+  </script>
+</body>
+
+</html>

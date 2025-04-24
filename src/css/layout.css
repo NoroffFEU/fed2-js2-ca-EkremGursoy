@@ -1,0 +1,27 @@
+/* Layout styles */
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+}
+
+/* Navigation styles */
+nav a {
+  color: white;
+  padding: 0.5rem;
+  text-decoration: none;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+/* Auth visibility classes */
+.auth-only-logged-in,
+.auth-only-logged-out {
+  display: none;
+}

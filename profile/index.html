@@ -1,17 +1,124 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Noroff FED2 JS2 CA</title>
-    <script type="module" src="/src/app.js"></script>
-  </head>
-  <body>
-    <h1>Profile</h1>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Profile - Noroff FED2 JS2 CA</title>
+  <script type="module" src="/src/app.js"></script>
+  <style>
+    a,
+    button,
+    [role="button"] {
+      cursor: pointer;
+    }
+  </style>
+</head>
 
-    <form name="updateProfile">
-      <button>Update Profile</button>
-    </form>
-  </body>
+<body class="bg-gray-100 min-h-screen">
+  <header class="bg-white shadow">
+    <div class="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+      <div class="flex items-center">
+        <a href="/">
+          <img src="/images/noroff-logo.png" alt="Noroff Logo" class="h-10 w-auto" />
+        </a>
+        <h1 class="ml-4 text-2xl font-bold text-gray-900">Your Profile</h1>
+      </div>
+      <nav class="flex space-x-4">
+        <a href="/" class="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">Home</a>
+        <a href="/profile/" class="text-indigo-600 hover:text-indigo-700 px-3 py-2 rounded-md text-sm font-medium">My
+          Profile</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container mx-auto px-4 py-8 max-w-4xl">
+    <!-- Profile view section -->
+    <section id="profile-view" class="bg-white rounded-lg shadow-md overflow-hidden">
+      <!-- Banner image -->
+      <div class="relative h-48 w-full">
+        <img id="banner" src="" alt="" class="w-full h-full object-cover" />
+      </div>
+
+      <!-- Profile info container -->
+      <div id="profile-info" class="relative px-6 pb-6 text-center">
+        <img id="avatar" src="" alt=""
+          class="w-24 h-24 rounded-full border-4 border-white mx-auto -mt-12 shadow-md object-cover" />
+        <h2 id="name" class="text-2xl font-bold mt-3 text-gray-800">my_username</h2>
+        <p id="email" class="text-gray-600 mt-1">first.last@stud.noroff.no</p>
+        <p id="bio" class="mt-3 text-gray-700">No bio provided</p>
+        <div id="follow-stats" class="flex justify-center space-x-6 mt-4">
+          <div>
+            <span id="followers-count" class="block font-bold text-lg">0</span>
+            <span class="text-sm text-gray-500">Followers</span>
+          </div>
+          <div>
+            <span id="following-count" class="block font-bold text-lg">0</span>
+            <span class="text-sm text-gray-500">Following</span>
+          </div>
+        </div>
+
+        <!-- Edit Profile button - moved inside the profile container -->
+        <div class="mt-6">
+          <a href="/profile/edit/" id="edit-profile-btn"
+            class="inline-block bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-6 rounded-md transition duration-200 shadow-sm">
+            Edit Profile
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- User Posts Section -->
+    <section class="mt-12">
+      <div class="text-center mb-8">
+        <h2 class="text-2xl font-bold text-gray-900">My Posts</h2>
+      </div>
+      <div class="flex justify-center mb-6">
+        <a href="/post/create/"
+          class="inline-flex items-center px-6 py-3 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+          Create New Post
+        </a>
+      </div>
+
+      <!-- Loading indicator for posts -->
+      <div id="user-posts-loading" class="py-10 text-center text-gray-500">
+        Loading your posts...
+      </div>
+
+      <!-- Error message (hidden by default) -->
+      <div id="user-posts-error" class="hidden py-10 text-center text-red-500">
+        Error loading posts. Please try again later.
+      </div>
+
+      <!-- Empty state (hidden by default) -->
+      <div id="user-posts-empty" class="hidden py-10 text-center">
+        <p class="text-gray-500 mb-4">You haven't created any posts yet</p>
+        <a href="/post/create/"
+          class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+          Create Your First Post
+        </a>
+      </div>
+
+      <!-- Posts grid -->
+      <div id="user-posts-container" class="hidden grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <!-- Post cards will be inserted here dynamically -->
+      </div>
+
+      <!-- Load more button -->
+      <div class="mt-8 flex justify-center">
+        <button id="load-more-posts-btn"
+          class="hidden px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
+          Load More
+        </button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-white mt-12">
+    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 flex justify-center">
+      <p class="text-sm text-gray-500">© 2025 Noroff FED2 JS2 Course Assignment</p>
+    </div>
+  </footer>
+</body>
+
 </html>

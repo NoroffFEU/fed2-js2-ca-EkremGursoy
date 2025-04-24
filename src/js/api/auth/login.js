@@ -1,6 +1,5 @@
 export async function login({ email, password }) {
   try {
-    // console.log("Hello!")
     const response = await fetch("https://v2.api.noroff.dev/auth/login", {
       method: "POST",
       headers: { 'Content-Type': 'application/json' },

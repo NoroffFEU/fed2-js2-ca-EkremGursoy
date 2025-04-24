@@ -9,51 +9,67 @@
   <script type="module" src="/src/app.js"></script>
 </head>
 
-<body>
-  <h1>Register</h1>
+<body class="min-h-screen bg-gray-50 py-6 flex flex-col justify-center sm:py-12">
+  <div class="relative py-3 sm:max-w-xl sm:mx-auto">
+    <div class="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20">
+      <div class="max-w-md mx-auto">
+        <h1 class="text-2xl font-semibold text-center mb-6">Register</h1>
 
-  <form name="register" id="register-form">
-    <div>
-      <label for="name">Name</label>
-      <input id="name" type="text" name="name" required maxlength="20" pattern="^[\w]+$"
-        title="Please enter a username using only letters and numbers" />
+        <form name="register" id="register-form" class="space-y-4">
+          <div>
+            <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+            <input id="name" type="text" name="name" required maxlength="20" pattern="^[\w]+$"
+              title="Please enter a username using only letters and numbers"
+              class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" />
+          </div>
+
+          <div>
+            <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+            <input id="email" type="email" name="email" required pattern="^[\w\-.]+@(stud\.)?noroff\.no$"
+              title="Please enter a valid noroff.no or stud.noroff.no address"
+              class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" />
+          </div>
+
+          <div>
+            <label for="bio" class="block text-sm font-medium text-gray-700">Bio</label>
+            <textarea id="bio" name="bio"
+              class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"></textarea>
+          </div>
+
+          <div>
+            <label for="banner" class="block text-sm font-medium text-gray-700">Banner URL</label>
+            <input type="url" id="banner" name="banner"
+              class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" />
+          </div>
+
+          <div>
+            <label for="avatar" class="block text-sm font-medium text-gray-700">Avatar URL</label>
+            <input type="url" id="avatar" name="avatar"
+              class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" />
+          </div>
+
+          <div>
+            <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+            <input type="password" name="password" id="password" required minlength="8"
+              class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" />
+          </div>
+
+          <div>
+            <label for="passwordConfirm" class="block text-sm font-medium text-gray-700">Confirm Password</label>
+            <input type="password" name="passwordConfirm" id="passwordConfirm" required minlength="8"
+              class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" />
+          </div>
+
+          <div class="flex items-center justify-between mt-6">
+            <a href="/auth/login/" class="text-sm text-indigo-600 hover:text-indigo-500">Already have an account?
+              Login</a>
+            <button type="submit"
+              class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Register</button>
+          </div>
+        </form>
+      </div>
     </div>
-
-    <div>
-      <label for="email">Email</label>
-      <input id="email" type="email" name="email" required pattern="^[\w\-.]+@(stud\.)?noroff\.no$"
-        title="Please enter a valid noroff.no or stud.noroff.no address" />
-    </div>
-
-    <div>
-      <label for="bio">Bio</label>
-      <textarea id="bio" name="bio"></textarea>
-    </div>
-
-    <div>
-      <label for="banner">Banner URL</label>
-      <input type="url" id="banner" name="banner" />
-    </div>
-
-    <div>
-      <label for="avatar">Avatar URL</label>
-      <input type="url" id="avatar" name="avatar" />
-    </div>
-
-    <div>
-      <label for="password">Password</label>
-      <input type="password" name="password" id="password" required minlength="8" />
-    </div>
-
-    <div>
-      <label for="passwordConfirm">Confirm Password</label>
-      <input type="password" name="passwordConfirm" id="passwordConfirm" required minlength="8" />
-    </div>
-
-    <a href="/auth/login/">Login</a>
-    <button type="submit">Register</button>
-  </form>
-
+  </div>
 </body>
 
 </html>
