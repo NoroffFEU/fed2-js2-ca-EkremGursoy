@@ -1,0 +1,49 @@
+/* Search input styling */
+.search-input {
+  transition: all 0.2s ease-in-out;
+  height: 40px;
+}
+
+.search-input:focus {
+  box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2);
+  border-color: #6366f1;
+}
+
+/* Button styling */
+.clear-search-btn, 
+button[type="submit"] {
+  height: 40px;
+  transition: all 0.2s ease;
+}
+
+.clear-search-btn:hover {
+  background-color: #f3f4f6;
+  transform: translateY(-1px);
+}
+
+button[type="submit"]:hover {
+  transform: translateY(-1px);
+}
+
+/* Tag styling for post tags */
+.tag-badge {
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.tag-badge:hover {
+  background-color: #e0e7ff;
+  color: #4f46e5;
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .search-input {
+    height: 38px;
+  }
+  
+  .clear-search-btn, 
+  button[type="submit"] {
+    height: 38px;
+  }
+}

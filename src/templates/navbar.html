@@ -1,17 +1,108 @@
 <nav class="bg-gray-800 text-white p-4">
-    <div class="container mx-auto flex justify-between items-center">
-      <a href="/" class="text-xl font-bold">Noroff Social</a>
-      
-      <div class="flex gap-4">
-        <a href="/">Home</a>
-        <a href="/profile/">My Profile</a>
-        <a href="/post/create/">Create Post</a>
+  <div class="container mx-auto flex justify-between items-center">
+    <a href="/" class="text-xl font-bold">Noroff Social</a>
+    
+    <!-- Mobile menu button (hamburger) - now using md: breakpoint instead of lg: -->
+    <button id="mobile-menu-button" class="md:hidden flex items-center p-1 text-white hover:text-gray-300 focus:outline-none">
+      <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+      </svg>
+    </button>
+    
+    <!-- Desktop Navigation - now using md: breakpoint instead of lg: -->
+    <div class="hidden md:flex gap-4">
+      <a href="/" class="hover:text-gray-300">Home</a>
+      <a href="/profile/" class="hover:text-gray-300">My Profile</a>
+      <a href="/post/create/" class="hover:text-gray-300">Create Post</a>
+    </div>
+    
+    <div class="hidden md:flex gap-4">
+      <a href="/auth/login/" class="auth-only-logged-out hover:text-gray-300">Login</a>
+      <a href="/auth/register/" class="auth-only-logged-out hover:text-gray-300">Register</a>
+      <button id="logout-button" class="auth-only-logged-in hover:text-gray-300 cursor-pointer">Logout</button>
+    </div>
+  </div>
+  
+  <!-- Mobile Navigation (Slide-in menu) -->
+  <div id="mobile-menu" class="fixed inset-0 z-50 hidden">
+    <!-- Overlay -->
+    <div id="mobile-menu-overlay" class="absolute inset-0 bg-black opacity-50"></div>
+    
+    <!-- Sidebar -->
+    <div class="absolute top-0 right-0 w-64 h-full bg-gray-900 shadow-lg transform transition-transform duration-300 ease-in-out translate-x-full">
+      <!-- Close button -->
+      <div class="flex justify-end p-4">
+        <button id="mobile-menu-close" class="text-white hover:text-gray-300 focus:outline-none">
+          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
       </div>
       
-      <div class="flex gap-4">
-        <a href="/auth/login/" class="auth-only-logged-out">Login</a>
-        <a href="/auth/register/" class="auth-only-logged-out">Register</a>
-        <button id="logout-button" class="auth-only-logged-in">Logout</button>
+      <!-- Mobile menu links -->
+      <div class="flex flex-col px-4 py-2 space-y-4">
+        <a href="/" class="text-white hover:text-gray-300 py-2">Home</a>
+        <a href="/profile/" class="text-white hover:text-gray-300 py-2">My Profile</a>
+        <a href="/post/create/" class="text-white hover:text-gray-300 py-2">Create Post</a>
+        <hr class="border-gray-700">
+        <a href="/auth/login/" class="auth-only-logged-out text-white hover:text-gray-300 py-2">Login</a>
+        <a href="/auth/register/" class="auth-only-logged-out text-white hover:text-gray-300 py-2">Register</a>
+        <button id="mobile-logout-button" class="auth-only-logged-in text-white hover:text-gray-300 py-2 text-left">Logout</button>
       </div>
     </div>
-  </nav>
+  </div>
+</nav>
+
+<script>
+  // Mobile menu functionality
+  document.addEventListener('DOMContentLoaded', function() {
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileMenuClose = document.getElementById('mobile-menu-close');
+    const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+    const mobileLogoutButton = document.getElementById('mobile-logout-button');
+    
+    // Function to open mobile menu
+    function openMobileMenu() {
+      mobileMenu.classList.remove('hidden');
+      document.body.classList.add('overflow-hidden'); // Prevent scrolling when menu is open
+      
+      // Animate menu in
+      setTimeout(() => {
+        mobileMenu.querySelector('.transform').classList.add('translate-x-0');
+        mobileMenu.querySelector('.transform').classList.remove('translate-x-full');
+      }, 10);
+    }
+    
+    // Function to close mobile menu
+    function closeMobileMenu() {
+      // Animate menu out
+      mobileMenu.querySelector('.transform').classList.remove('translate-x-0');
+      mobileMenu.querySelector('.transform').classList.add('translate-x-full');
+      
+      // Hide menu after animation
+      setTimeout(() => {
+        mobileMenu.classList.add('hidden');
+        document.body.classList.remove('overflow-hidden');
+      }, 300);
+    }
+    
+    // Event listeners
+    mobileMenuButton.addEventListener('click', openMobileMenu);
+    mobileMenuClose.addEventListener('click', closeMobileMenu);
+    mobileMenuOverlay.addEventListener('click', closeMobileMenu);
+    
+    // Handle logout in mobile menu
+    if (mobileLogoutButton) {
+      mobileLogoutButton.addEventListener('click', function() {
+        // Use the same event handler as the main logout button
+        const mainLogoutButton = document.getElementById('logout-button');
+        if (mainLogoutButton) {
+          // Create and dispatch a click event to reuse the same logic
+          const clickEvent = new Event('click');
+          mainLogoutButton.dispatchEvent(clickEvent);
+        }
+      });
+    }
+  });
+</script>
