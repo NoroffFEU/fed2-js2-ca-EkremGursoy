@@ -1,9 +1,10 @@
+import tailwindcss from "@tailwindcss/vite";
 import { resolve } from "path";
 import { defineConfig } from "vite";
 
 export default defineConfig({
   appType: "mpa",
-  base: "",
+  base: "/",
   build: {
     target: "esnext",
     rollupOptions: {
@@ -16,7 +17,11 @@ export default defineConfig({
         post: resolve(__dirname, "./post/index.html"),
         editPost: resolve(__dirname, "./post/edit/index.html"),
         createPost: resolve(__dirname, "./post/create/index.html"),
+        editProfile: resolve(__dirname, "./profile/edit/index.html")
       },
     },
   },
+  plugins: [
+    tailwindcss(),
+  ],
 });

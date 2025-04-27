@@ -1,16 +1,128 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Noroff FED2 JS2 CA</title>
-    <script type="module" src="/src/app.js"></script>
-  </head>
-  <body>
-    <h1>Create Post</h1>
 
-    <form name="createPost">
-      <button>Create Post</button>
-    </form>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="/images/noroff-logo.png" type="image/x-icon">
+  <title>Create Post - Noroff FED2 JS2 CA</title>
+  <script type="module" src="/src/app.js"></script>
+  <style>
+    a,
+    button,
+    [role="button"] {
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body class="min-h-screen bg-gray-50">
+  <header class="bg-white shadow">
+    <div class="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8">
+      <!-- Updated responsive header layout without the secondary nav -->
+      <div class="flex flex-col sm:flex-row justify-between items-center gap-3">
+        <div class="flex flex-col sm:flex-row items-center text-center sm:text-left gap-3">
+          <a href="/" class="flex-shrink-0">
+            <img src="/images/noroff-logo.png" alt="Noroff Logo" class="h-10 w-auto" />
+          </a>
+          <h1 class="text-2xl font-bold text-gray-900">Create Post</h1>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-4xl mx-auto py-6 sm:px-6 lg:px-8">
+    <div class="px-4 py-6 sm:px-0">
+      <div class="bg-white rounded-lg shadow overflow-hidden">
+        <div class="px-4 py-5 sm:px-6 border-b border-gray-200">
+          <h2 class="text-lg font-medium text-gray-900">Create New Post</h2>
+          <p class="mt-1 text-sm text-gray-500">Share your thoughts, questions, or ideas</p>
+        </div>
+
+        <div class="px-4 py-5 sm:p-6">
+          <form id="create-post-form" name="createPost" class="space-y-6">
+            <div class="form-group">
+              <label for="title" class="block text-sm font-medium text-gray-700">Title</label>
+              <input type="text" id="title" name="title" required
+                class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+            </div>
+
+            <div class="form-group">
+              <label for="body" class="block text-sm font-medium text-gray-700">Body</label>
+              <textarea id="body" name="body" required rows="8"
+                class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"></textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="tags" class="block text-sm font-medium text-gray-700">Tags (comma separated)</label>
+              <input type="text" id="tags" name="tags" placeholder="tag1, tag2, tag3"
+                class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+            </div>
+
+            <div class="form-group">
+              <label for="image" class="block text-sm font-medium text-gray-700">Image URL</label>
+              <input type="url" id="image" name="image" placeholder="https://example.com/image.jpg"
+                class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+              <p class="mt-2 text-sm text-gray-500">Optional: Add an image to your post</p>
+            </div>
+
+            <div id="preview-container" class="hidden">
+              <label class="block text-sm font-medium text-gray-700 mb-2">Image Preview</label>
+              <div class="relative w-full h-48 bg-gray-100 rounded-md overflow-hidden">
+                <img id="image-preview" src="" alt="Image preview" class="w-full h-full object-cover">
+              </div>
+            </div>
+
+            <div class="pt-5">
+              <div class="flex justify-end">
+                <a href="/"
+                  class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 mr-3">
+                  Cancel
+                </a>
+                <button type="submit"
+                  class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                  Publish Post
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="bg-white mt-auto">
+    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 flex justify-center">
+      <p class="text-sm text-gray-500">© 2025 Noroff FED2 JS2 Course Assignment</p>
+    </div>
+  </footer>
+
+  <script>
+    // Image preview functionality
+    document.addEventListener('DOMContentLoaded', function () {
+      const imageInput = document.getElementById('image');
+      const previewContainer = document.getElementById('preview-container');
+      const imagePreview = document.getElementById('image-preview');
+
+      if (imageInput && previewContainer && imagePreview) {
+        imageInput.addEventListener('input', function () {
+          const imageUrl = this.value.trim();
+
+          if (imageUrl) {
+            imagePreview.src = imageUrl;
+            previewContainer.classList.remove('hidden');
+
+            // Handle image load error
+            imagePreview.onerror = function () {
+              imagePreview.src = 'https://via.placeholder.com/400x300?text=Invalid+Image+URL';
+            };
+          } else {
+            previewContainer.classList.add('hidden');
+          }
+        });
+      }
+    });
+  </script>
+</body>
+
 </html>
