@@ -1,5 +1,6 @@
 import { getCurrentUser } from "../../utilities/authGuard";
-
+import { API_SOCIAL_POSTS } from "../constants";
+import { headers } from "../headers";
 
 /**
  * Creates a new post
@@ -8,10 +9,9 @@ import { getCurrentUser } from "../../utilities/authGuard";
  * @param {string} postData.body - The post body content
  * @param {string[]} postData.tags - Array of tags
  * @param {Object} postData.media - Media object with url
- * @returns {Promise<Object>} - The created post
+ * @returns {Promise<Object>} - The created post data, errors, and status code
  */
 export async function createPost({ title, body, tags = [], media = null }) {
-
   // Get user data from local storage or context
   const { accessToken } = getCurrentUser();
 
@@ -28,36 +28,38 @@ export async function createPost({ title, body, tags = [], media = null }) {
     throw new Error('Tags must be an array');
   }
 
-  // In a real application, this would be a fetch call to an API
   try {
-    console.log("Creating post with data:", { title, body, tags, media });
+    // Set up request headers
+    const requestHeaders = headers();
+    requestHeaders.append("Authorization", `Bearer ${accessToken}`);
+    requestHeaders.append("Content-Type", "application/json");
 
-
-    // Generate post data
-    const post = {
+    // Prepare post data
+    const postData = {
       title,
       body,
       tags,
-      image: media,
     };
 
-    // Here you would normally POST to an API
-    const response = await fetch('https://v2.api.noroff.dev/social/posts', {
+    // Add media if provided
+    if (media) {
+      postData.media = media;
+    }
+
+    const response = await fetch(API_SOCIAL_POSTS, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${accessToken}`,
-      },
-      body: JSON.stringify(post)
+      headers: requestHeaders,
+      body: JSON.stringify(postData)
     });
 
-    const data = await response.json();
-
-    console.log(data)
-
-    return post;
+    const { data, errors, statusCode } = await response.json();
+    return { data, errors, statusCode };
   } catch (error) {
-    console.error('API Error:', error);
-    throw new Error('Failed to create post: ' + error.message);
+    console.error('Error creating post:', error);
+    return {
+      data: null,
+      errors: [{ message: 'Failed to create post', error }],
+      statusCode: 500
+    };
   }
 }

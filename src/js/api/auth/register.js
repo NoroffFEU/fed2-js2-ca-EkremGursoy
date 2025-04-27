@@ -23,8 +23,6 @@ export async function register({
         },
       })
     });
-
-    console.log("Response: ", response);
     const { data, errors, statusCode } = await response.json();
     return { data, errors, statusCode };
   } catch (error) {
