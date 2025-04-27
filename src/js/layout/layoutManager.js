@@ -1,7 +1,7 @@
 export async function loadLayout() {
   // Fetch navbar and footer HTML
-  const navbarResponse = await fetch('/src/templates/navbar.html');
-  const footerResponse = await fetch('/src/templates/footer.html');
+  const navbarResponse = await fetch('/templates/navbar.html');
+  const footerResponse = await fetch('/templates/footer.html');
 
   const navbarHtml = await navbarResponse.text();
   const footerHtml = await footerResponse.text();
